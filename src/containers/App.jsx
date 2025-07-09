@@ -8,7 +8,6 @@ import './App.css';
 function App() {
   const [robots, setRobots] = useState([])
   const [searchfield, setSearchfield] = useState('')
-  const [count, setCount] = useState(0) // for demo purposes
 
   useEffect(()=> {
     fetch('https://jsonplaceholder.typicode.com/users')
@@ -25,16 +24,11 @@ function App() {
     return robot.name.toLowerCase().includes(searchfield.toLowerCase());
   })
 
-  const clickCount = () => {
-    setCount(count => count + 1);
-  }
-
   return !robots.length ?
     <h1>Loading</h1> :
     (
       <div className='tc'>
         <h1 className='f1'>RoboFriends</h1>
-        <button onClick={clickCount}>You clicked {count} times</button>
         <SearchBox searchChange={onSearchChange}/>
         <Scroll>
           <CardList robots={filteredRobots} />
